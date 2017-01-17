@@ -84,9 +84,24 @@ Date: Tue, 17 Jan 2017 16:02:49 GMT
 
 
 ## Installing synthetic data
-A shell script [ghost_database_initialfill_demo.sh](ghost_database_initialfill_demo.sh) is located in this repository and can fill the server with synthetic data for demonstrating server capabilities. Additionally, the [Examples.md](Examples.md) is taken from the mozilla sensorthings repository and contains an interactive command line demonstration using curl.
+A shell script [ghost_database_initialfill_demo.sh](ghost_database_initialfill_demo.sh) is located in this repository and can fill the server with synthetic data for demonstrating server capabilities. Additionally, the [Examples.md](Examples.md) is taken from the mozilla sensorthings repository and contains an interactive command line demonstration using curl. There are also
 
 ## Proper dorking with the system
 
 One of the "interesting" features of SensorThings is that it is a MQTT broker that can link MQTT Publications and Subscriptions.
 
+For example, to subscribe to a Topic on the SensorThings server, execute the following command.
+
+```bash
+$  mosquitto_sub -t "Datastreams(1)/Observations" -h localhost
+```
+
+Now that you are subscribed, if you issue a publish command in a new terminal window:
+```bash
+$ mosquitto_pub -h localhost -t "GOST/Datastreams(1)/Observations" -m '{"result" : 38}'
+```
+
+You should see the following response in the subscription window:
+```ssh
+{"@iot.id":1,"@iot.selfLink":"http://localhost:8080/v1.0/Observations(1)","phenomenonTime":"2017-01-17T17:43:21.115192291Z","result":38,"resultTime":"null","Datastream@iot.navigationLink":"http://localhost:8080/v1.0/Observations(1)/Datastream","FeatureOfInterest@iot.navigationLink":"http://localhost:8080/v1.0/Observations(1)/FeatureOfInterest"}
+```
