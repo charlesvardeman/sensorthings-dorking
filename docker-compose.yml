@@ -1,0 +1,41 @@
+version: '2'
+services:
+    node-red:
+        image: nodered/node-red-docker
+        volumes:
+            - nodered:/data
+        ports:
+            - "1880:1880"
+    mosquitto:
+        image: toke/mosquitto
+        volumes:
+            - mosquitto_data:/mqtt/data
+            - mosquitto_conf:/mqtt/config:ro
+        ports:
+            - "1883:1883"
+            - "9001:9001"
+    gost-db:
+        image: geodan/gost-db:0.3
+        volumes:
+            - postgis:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: gost
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+    gost:
+        image: geodan/gost:0.3
+        ports:
+            - "8080:8080"
+        depends_on:
+            - mosquitto
+            - gost-db
+        environment:
+            gost_db_host: gost-db
+            gost_mqtt_host: mosquitto
+volumes:
+    postgis: {}
+    nodered: {}
+    mosquitto_data: {}
+    mosquitto_conf: {}
