@@ -1,7 +1,8 @@
 # Notes on using the golang [gost](https://github.com/Geodan/gost) implementation of the [OGC sensorthings specification](http://docs.opengeospatial.org/is/15-078r6/15-078r6.html).
 
 ## Other Implementations and related projects.
-There is also a javascript node implementation called [whiskers](https://github.com/eclipse/whiskers) sponsored by the [Eclipse Foundation](https://eclipse.org/) for their [IoT](https://iot.eclipse.org/) project. that seems less mature. A second javascript [implementation](https://github.com/mozilla-sensorweb/sensorthings) is being developed by the Mozilla Foundation and looks a little more mature. It is being developed as part of Mozilla's IoT [Connected Devices](https://wiki.mozilla.org/Connected_Devices) project. The connected devices project also has a [ir Quality Sensor Network](https://wiki.mozilla.org/Sensor_Web) being developed.
+There is also a javascript node implementation called [whiskers](https://github.com/eclipse/whiskers) sponsored by the [Eclipse Foundation](https://eclipse.org/) for their [IoT](https://iot.eclipse.org/) project. that seems less mature. A second javascript [implementation](https://github.com/mozilla-sensorweb/sensorthings) is being developed by the Mozilla Foundation and looks a little more mature. It is being developed as part of Mozilla's IoT [Connected Devices](https://wiki.mozilla.org/Connected_Devices) project. The connected devices project also has a [ir Quality Sensor Network](https://wiki.mozilla.org/Sensor_Web) being developed. There are a series of YouTube videos in the [SensorUP](http://www.sensorup.com) YouTube [Channel](https://www.youtube.com/channel/UCRiwubGrY1zYSt4GOu3Ohvg). SensorUp is a commercial entity that is developing IoT solutions based on the OGC SensorThings standard.
+
 
 ## Installation
 This repository contains a docker compose file that will automatically build the gost service stack from dockerhub and github repositories. It requires that [docker](https://www.docker.com/) be installed on your system. To launch the stack in the same directory as the compose file:
@@ -87,4 +88,5 @@ A shell script [ghost_database_initialfill_demo.sh](ghost_database_initialfill_d
 
 ## Proper dorking with the system
 
+One of the "interesting" features of SensorThings is that it is a MQTT broker that can link MQTT Publications and Subscriptions.
 
